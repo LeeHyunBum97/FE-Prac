@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta http-enquiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IF문</title>
+        <script>
+            // 대화상자 창에서 데이터 입력받기
+            var score = prompt("점수를 입력하세요");
+            console.log(score);
+
+            //점수가 60이상 일때, 합격 출력하기
+            if (Number(score) >= 90) {
+                alert("A"); // 대화상자창 출력
+            } else if(Number(score) >= 80){
+                alert("B");
+            } else {
+                alert("C");
+            }
+        </script>
+    </head>
+    <body></body>
+</html>
