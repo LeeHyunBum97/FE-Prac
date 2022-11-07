@@ -29,6 +29,21 @@
                 i++;
             }while(i<4);
 
+            //Object 객체 생성:name과 age라는 속성에 adam과 26이라는 값을 저장
+            var obj = {"name":"adam", "age":26};
+
+            //Array 객체 생성
+            var ary = [100, 200, 300];
+
+            for(var attr in obj){ // obj가 가진 모든 속성을 attr에 대입하고 {}을 수행한다.(for~in문)
+                console.log(attr); 
+                console.log(attr + ":" + obj[attr]);
+            }
+
+            for(var attr in ar){ // 배열의 경우는 인덱스가 순서대로 attr(임시변수)에 대입된다.
+                console.log(attr); 
+                console.log(attr + ":" + ar[attr]);
+            }
         </script>
     </head>
     <body></body>

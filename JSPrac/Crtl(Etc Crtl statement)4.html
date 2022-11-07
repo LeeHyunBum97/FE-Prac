@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-enquiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>기타 제어문(명령어)</title>
+        <script>
+            /* for(var i=1; i<10; i++){
+                console.log(i);
+                break; // 앞서 1회 수행되고 중단된다.
+            }*/
+
+            for (var i = 1; i < 10; i++) { // 보통은 아래와 같이 if와 같이 사용된다.
+
+                if (i % 3 == 0) {
+                    break;
+                }
+                console.log(i);
+            }
+            console.log("");
+
+            for (var i = 1; i < 10; i++) {
+                if (i % 3 == 3) {
+                    continue;
+                }
+                console.log(i);
+            }
+        </script>
+    </head>
+    <body>
+        <script>
+            for (var i = 1; i <= 5; i++) {
+                for (var j = 1; j <= 5; j++) {
+                    document.write("*");
+                }
+                document.write("<br/>");
+            }
+        </script><br/><br/>
+
+        <script>
+            for (var i = 0; i < 5; i++) {
+                for (var j = 0; j < i + 1; j++) {
+                    document.write("*");
+                }
+                document.write("<br/>");
+            }
+        </script><br/><br/>
+
+        <script>
+            for (var i = 0; i < 5; i++) {
+                for (var j = 0; j < 2 * i - 1; j++) {
+                    document.write("*");
+                }
+                document.write("<br/>");
+            }
+        </script><br/><br/>
+
+        <script>
+            for (var i = 0; i < 5; i++) {
+                for (var j = 0; j < 5 - 1 * i; j++) {
+                    document.write("*");
+                }
+                document.write("<br/>");
+            }
+        </script><br/><br/>
+
+        <script>
+            for (var i = 0; i < 5; i++) {
+                if (i < 3) {
+                    for (var j = 0; j < i + 1; j++) {
+                        document.write("*");
+                    }
+                } else {
+                    for (var j = 0; j < 5 - 1 * i; j++) {
+                        document.write("*");
+                    }
+                }
+                document.write("<br/>");
+            }
+        </script><br/><br/>
+
+        <script>
+            for (var i = 0; i < 6 + i; i++) {
+                if (i=6+i) {
+                    document.write(i);
+                } else{
+                    document.write("^");
+                }
+            }
+        </script><br/><br/>
+    </body>
+</html>
