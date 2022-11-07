@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta http-enquiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Switch문</title>
+        <script>
+            // 대화상자 창에서 데이터 입력받기
+            let menu = prompt("1부터 4사이의 문자를 입력하세요")
+
+            // 1 = 중식, 2 = 한식, 3 = 일식, 4 = 양식 이외에는 잘못된 입력
+            switch (Number(menu)) { // 표현식이 복잡해지는 건 사실 비효율적이고 차라리 case 값을 문자열로 바로쓰는게 좋을지도
+
+                case 1:
+                    alert("중식");  
+                    break;
+                case 2:
+                    alert("한식");
+                    break;
+                case 3:
+                    alert("일식");
+                    break;
+                case 4:
+                    alert("분식");
+                    break;
+                default:
+                    alert("1에서 4사이의 문자만 입력해주세요.");
+            }
+
+            // 일반적으로 잘 사용하지 않으나 아래처럼 작성하면 if문과 동일하게 기능한다
+            // 이런 경우에는 switch와 if중에 switch가 조금 더 빠르다.
+            // 또한 switch는 하나의 블럭이나 각 case를 찾아가기 때문에 case내부에 변수를 선언해도 다른 case에 접근하지 않으므로 사용할 수 없다.
+            let score = prompt("점수를 입력하세요.")
+            switch(true){
+                case score >= 60 :
+                    alert("합격");
+                    break;
+
+                case score < 60 :
+                    alert("불합격");
+                    break
+            }
+        </script>
+    </head>
+    <body></body>
+</html>
