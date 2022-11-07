@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-enquiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>함수의 생성과 호출</title>
+        
+    </head>
+    <body>
+        <script>
+            // 함수의 선언(생성), 함수의 선언문은 현재 모듈에 저장된다.
+            let f = function(){
+                for(var i=0; i<3;i++){
+                    console.log("hello, JS");
+                }
+            }
+            f(); // 선언한 f라는 함수를 호출
+            console.log("");
+            f();
+
+            // 화살표 함수 
+            let u = () => {
+                for(var i=0; i<5; i++){
+                    console.log("hi")
+                }
+            }
+            u();
+        </script>
+    </body>
+</html>
