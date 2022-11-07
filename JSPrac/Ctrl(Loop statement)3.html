@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-enquiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>반복문</title>
+        <script>
+            // 코테시 1을 index로 하는 것이 잘 되는 경우가 많다.
+            for(var i=0; i <3; i++){ 
+                // 0, 1, 2 일 때까지 수행하나 반복문 탈출 시 i는 3이 되어있다, 각항은 쉼표 뒤에 여러 항이나 식이 들어갈 수 있다.
+               console.log("Hello, JS");
+            } // 스파게티 코드 제거, 유지보수 용이
+
+            for(var i=0; i < 4; i++){ // image1.png, image11.png, image21.png, image31.png 출력하기
+                console.log("image" + (10*i+1)+".png");
+            }
+
+            var i = 0;
+            while(i<4){ // 위의 if문과 동일한 역할
+                console.log("image" + (10*i+1)+".png");
+                i++;
+            }
+            
+            // do while로 작성하면 반드시 한 번은 수행되어야 한다는 의미를 전달하는 것.
+            i = 0;
+            do{
+                console.log("image" + (10*i+1)+".png");
+                i++;
+            }while(i<4);
+
+        </script>
+    </head>
+    <body></body>
+</html>
