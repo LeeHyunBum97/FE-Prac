@@ -35,6 +35,58 @@
             with(obj){
                 console.log(title)
             }
+
+            // 속성 추가 및 수정
+            obj.company = "adamsoft";
+            obj.title = "exodus";
+            //속성 삭제
+            delete(obj.album);
+            console.log(obj);
+
+
+            let object = { "name":"adam",
+                            "getName" : function(){
+                                //JS에서는 메서드 안에서 자신의 객체에 속한 속성을 호출할 때 반드시 this.을 붙여야 한다.
+                                return this.name;
+                            }
+                        }
+                        console.log(object.getName());
+
+            let singer1 = function(){
+                // this가 없으면 지역변수가 만들어집니다.
+                // this와 함께 만들어야 객체의 속성이 됩니다.
+                name = "이름없음";
+                song = "노래없음";
+            }
+
+            let singer2 = function(){
+                // name과 song이라는 속성을 갖는 생성자
+                // 매개변수가 없는 생성자를 default constructor이라고 합니다.
+                this.name = "이름없음";
+                this.song = "노래없음";
+            }
+
+            // 생성자를 이용한 인스턴스 생성
+            var ob1 = new singer2();
+            console.log(ob1);
+
+            let artist1 = function(name=name, job="불분명"){
+                // this가 없으면 지역변수가 만들어집니다.
+                // this와 함께 만들어야 객체의 속성이 됩니다.
+                this.name = name;
+                this.song = job;
+            }
+            var tae = new artist1("태연");
+            console.log(tae);
+
+            let artist2 = function(name, job){
+                this.name = name;
+                this.job = job;
+            }
+            var suzy = new artist2("수지", "가수");
+            var iu = new artist2("아이유", "가수");
+            console.log(suzy);
+            console.log(iu);
         </script>
     </body>
 </html>

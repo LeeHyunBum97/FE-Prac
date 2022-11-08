@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-enquiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Func_return</title>
+
+    </head>
+    <body>
+        <script>
+            // return: 함수의 수행을 종료하고 호출한 곳으로 돌아가는 역할
+            function f1() {
+                for (var i = 1; i < 10; i++) {
+                    if (i % 3) {
+                        // 수행을 종료하고 호출한 곳으로 돌아가기 때문에 break와 유사한 효과가 있을 수 있다.
+                        return;
+                    }
+                }
+                console.log(i)
+            }
+
+            // return의 또 다른 역할은 하나의 데이터를 호출한 곳으로 가지고 갈 수 있다는 것
+            function f2(first, second) {
+                return first + second; // 호출한 곳으로 돌아갈 때 데이터를 가지고 간다.
+            }
+            var result = f2(100, 200);
+            console.log(result);
+
+            result = f2(f2(1000, 3000), 2000); // 반환된 결과를 다른 함수의 매개변수로 사용할 수 있다.
+            console.log(result);
+
+            // 위의 경우와 동일하나 imsi로 f2()를 호출하고 반환받고 다시 f2를 호출하는 것이므로 Stack이 1MB만 필요하지만 위의 경우에는
+            // f2(f2())와 같이 두번 호출 한뒤 반환->반환 하는 과정으로 한번 호출에 2MB의 Stack이 필요하게 된다
+            // -> 무조건 코드라인 수를 줄이는 것이 좋은 것은 아니다.
+            var imsi = f2(1000, 2000);
+            result = f2(imsi, 2000)
+            console.log(result);
+
+            // 1 to n 재귀
+            const sum = (n) => {
+                if (n == 1) {
+                    return 1;
+                }
+                return n + sum(n - 1);
+            }
+            console.log(sum(10));
+
+            // 피보나치 수열 첫번째와 두번째는 무조건 1 
+            // 세번째 부터는 앞의 두개의 합 1, 1, 2, 3, 5, 8, 13, 21, 34, 55,89, ... 
+            
+            // 재귀를 이용한 피보나치 수열
+            const fibo_recurstion = (n) => {
+                if ((n == 1) || (n == 2)) {
+                        return 1;
+                    }
+                    return fibo_recurstion(n - 1) + fibo_recurstion(n - 2);
+                }
+            console.log(fibo_recurstion(11));
+            
+            // 재귀를 이용하지 않고 피보나치 수열 구하기
+            const fibo_norecursion = (n) => {
+                let n1 = 1;
+                let n2 = 1;
+                let fibo = 1;
+
+                for(var i = 3; i <= n ; i++){
+                    fibo = n1 + n2;
+                    n1 = n2;
+                    n2 = fibo
+                }
+                return fibo
+            }
+            console.log(fibo_norecursion(11));
+            console.log(fibo_norecursion(1000)); // 재귀를 사용하지 않기 때문에 처리가 빠르다
+
+            // setIntervaL(함수, 주기) : 주기마다 함수를 호출해서 실행하는 함수
+            // 함수를 대입받아 상태 변화가 생길 때 호출 되도록하는 것이 callback
+            setInterval(()=>{
+                console.log("콜백을 이용한 타이머 설정");
+            }, 5000)
+
+            // 함수를 생성하는데
+            function outer() {
+                let x = 0;
+                // 함수를 만들어서 반환하는데 이 함수는 내부에 있으므로 외부에 있는 데이터를 조작하는 것이 가능
+                return () => {
+                    x++;
+                    console.log(x);
+                }
+            } 
+
+            // 함수를 호출해서 함수를 반환받아 저장
+            var result = outer();
+
+            // 반환받은 함수를 호출하면 outer 안에 있는 x값이 수정된다.
+            // 이런식의 동작으로 작업한 내약을 함수안에 저장하면서 작업을 계속하는 것이 가능하다.
+            // 일반적인 클로저 기능_허나 언어중에도 동일한 이름이 있음
+
+            result(); // 1
+            result(); // 2
+
+            const f3 = function(n){
+                return Math.PI * n * n;
+            }
+            console.log(f3(4));
+            console.log(f3()); // Error 발생
+
+
+            // OR을 이용한 기본값 설정_과거에
+            const f4 = function(n){
+                const radius = n || 1;
+                n = radius;
+                return Math.PI * n * n;
+            }
+            console.log(f3(4));
+            console.log(f3()); // Error 발생
+
+
+            // ECMA 2015에서 매개변수에 기본값을 설정하는 문법이 추가 되었음
+            const f5 = function(n = 1){
+                return Math.PI * n * n;
+            }
+            console.log(f3(4));
+            console.log(f3()); // Error 발생
+        </script>
+    </body>
+</html>
