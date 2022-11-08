@@ -52,6 +52,29 @@
             // -> 하나로 묶지 않으면 무조건 순서대로 사용하기 때문에 바람직하지 않다.
             // -> 이런식으로 묶어 두는 것을 Value Object라고 한다.
 
+            let data1 = 10;
+            let data2 = [100, 200, 300];
+            let data = "문자열"; // 문자열은 세부 데이터를 변경할 수 없고 전체를 변경해야 한다.
+
+            let f1 = (arg) => {
+                console.log("arg : " + arg);
+                arg = 20;
+            }
+            f1(data1);
+            // 함수 내에서 변경을 해도 data1은 변경되지 않는다.
+            console.log("data : " + data1);
+
+            let f2 = (ar) => {
+                console.log("ar : " + ar);
+                //함수 내에서 매개변수로 받은 배열이나 객체의 내부 요소를 변경하면 원본의 내용이 변경될 수 있음
+                // 바람직하지 않지만 메모리를 아끼려는 목적으로 사용될 때가 있다.
+                ar[0] = 2030;
+            }
+            f2(data2);
+            console.log("data : " + data2);
+
+            
+
 
         </script>
     </body>
