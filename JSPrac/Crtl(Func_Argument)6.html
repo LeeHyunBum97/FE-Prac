@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-enquiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>매개변수</title>
+        
+    </head>
+    <body>
+        <script>
+
+            // 순서에 상관없이 컴파일러에서 선언문을 먼저 실행하고 호출(실행)하게 된다.
+            func_1(); 
+            // Hoisting이 가능하다, 함수 선언 이전에 호출해도 사용가능
+            // 해당 방법은 현재 지양
+            function func_1(){
+                console.log("function 키워드 다음에 함수 이름 설정");
+            }
+            func_1();
+            
+
+            // func_2(); // 예외 발생
+            // let 키워드를 이용해 함수를 선언했을 때, Hoisting 시도 했을 때, Error(exception)를 발생시킨다.
+            let func_2 = function(){
+                console.log("function 키워드로 만들고 변수에 대입");
+            }
+            func_2(); 
+
+            // 화살표 함수 - 함수를 다른 함수에 대입할 때 이용
+            // 화살표 함수는 매개변수가 1개라면 ()를 생략해도 된다.
+            let func_3 = ()=>{
+                console.log("화살표 함수");
+            }
+            func_3(); // 최근 JS에서 화살표 함수를 많이 쓰기 때문에 지원도 많다.
+
+            let func_4 = (n) => {
+                for(var i = 0; i < n; i++){
+                    console.log("매개변수 1개");
+                }
+            }
+            func_4(5);
+
+            let func_5 = (n, msg) => {
+                for(var i=0; i<n; i++){
+                    console.log(msg);
+                }
+            }
+            func_5(6, "문자열");
+            // 이것이 가능하나 매개변수가 2개 이상이면 하나로 묶는 것을 고려해야 한다.
+            // -> List or Array or 객체 등 하나로 묶은 다음에 인덱스나 메서드로 접근해서 사용.
+            // -> 하나로 묶지 않으면 무조건 순서대로 사용하기 때문에 바람직하지 않다.
+            // -> 이런식으로 묶어 두는 것을 Value Object라고 한다.
+
+
+        </script>
+    </body>
+</html>
