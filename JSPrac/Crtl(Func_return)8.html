@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-enquiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Func_return</title>
+
+    </head>
+    <body>
+        <script>
+            // return: 함수의 수행을 종료하고 호출한 곳으로 돌아가는 역할
+            function f1() {
+                for (var i = 1; i < 10; i++) {
+                    if (i % 3) {
+                        // 수행을 종료하고 호출한 곳으로 돌아가기 때문에 break와 유사한 효과가 있을 수 있다.
+                        return;
+                    }
+                }
+                console.log(i)
+            }
+
+            // return의 또 다른 역할은 하나의 데이터를 호출한 곳으로 가지고 갈 수 있다는 것
+            function f2(first, second) {
+                return first + second; // 호출한 곳으로 돌아갈 때 데이터를 가지고 간다.
+            }
+            var result = f2(100, 200);
+            console.log(result);
+
+            result = f2(f2(1000, 3000), 2000); // 반환된 결과를 다른 함수의 매개변수로 사용할 수 있다.
+            console.log(result);
+
+            // 위의 경우와 동일하나 imsi로 f2()를 호출하고 반환받고 다시 f2를 호출하는 것이므로 Stack이 1MB만 필요하지만 위의 경우에는
+            // f2(f2())와 같이 두번 호출 한뒤 반환->반환 하는 과정으로 한번 호출에 2MB의 Stack이 필요하게 된다
+            // -> 무조건 코드라인 수를 줄이는 것이 좋은 것은 아니다.
+            var imsi = f2(1000, 2000);
+            result = f2(imsi, 2000)
+            console.log(result);
+
+            // 1 to n 재귀
+            const sum = (n) => {
+                if (n == 1) {
+                    return 1;
+                }
+                return n + sum(n - 1);
+            }
+            console.log(sum(10));
+
+            // 피보나치 수열 첫번째와 두번째는 무조건 1 
+            // 세번째 부터는 앞의 두개의 합 1, 1, 2, 3, 5, 8, 13, 21, 34, 55,89, ... 
+            
+            // 재귀를 이용한 피보나치 수열
+            const fibo_recurstion = (n) => {
+                if ((n == 1) || (n == 2)) {
+                        return 1;
+                    }
+                    return fibo_recurstion(n - 1) + fibo_recurstion(n - 2);
+                }
+            console.log(fibo_recurstion(11));
+            
+            // 재귀를 이용하지 않고 피보나치 수열 구하기
+            const fibo_norecursion = (n) => {
+                let n1 = 1;
+                let n2 = 1;
+                let fibo = 1;
+
+                for(var i = 3; i <= n ; i++){
+                    fibo = n1 + n2;
+                    n1 = n2;
+                    n2 = fibo
+                }
+                return fibo
+            }
+            console.log(fibo_norecursion(11));
+            console.log(fibo_norecursion(1000)); // 재귀를 사용하지 않기 때문에 처리가 빠르다
+        </script>
+    </body>
+</html>
