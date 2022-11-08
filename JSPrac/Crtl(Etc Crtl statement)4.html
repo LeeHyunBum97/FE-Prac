@@ -11,7 +11,7 @@
                 break; // 앞서 1회 수행되고 중단된다.
             }*/
 
-            for (var i = 1; i < 10; i++) { // 보통은 아래와 같이 if와 같이 사용된다.
+            /* for (var i = 1; i < 10; i++) { // 보통은 아래와 같이 if와 같이 사용된다.
 
                 if (i % 3 == 0) {
                     break;
@@ -25,7 +25,7 @@
                     continue;
                 }
                 console.log(i);
-            }
+            } */
         </script>
     </head>
     <body>
@@ -41,15 +41,15 @@
         document.write("*"); } } else { for (var j = 0; j < 5 - 1 * i; j++) {
         document.write("*"); } } document.write("<br/>"); } </script><br/><br/> -->
 
-        <script>
+        <!-- <script>
             for (var i = 6; i >= 0; i--) {
                 for (var j = 12; j >= 1; j--) {
                     if (((j - 1 == i) && (12 % i) == 0)) {
                         document.write("*");
-                    } else if (((j - 1) + 12 % i) == i+(12%i)) {
-
+                    } else if ((i+j==13) ) {
+                        document.write("*");
                     } 
-                    else if ((j - 1 == i) && (j - 1 + (j - 1 + (12 % i)) == 12)) {
+                    else if (i-j==-1) {
                         document.write("*");
                     } else {
                         document.write("^");
@@ -57,20 +57,30 @@
                 }
                 document.write("<br/>")
             }
+            
+        </script>
+        <br/><br/> -->
 
-            /* for (var i = 1; i <= 7; i++) {
-                for (var j = 1; j <= 12; j++) {
-                    if (((12 % i) == 0) && (j-1 == i)) {
-                        document.write("*");
-                    } else if ((j-1 == i) && (j-1 + (j-1 + (12 % i)) == 12)) {
-                        document.write("*");
-                    } else{
+        <script>
+            for (var i = 0; i<=6; i++){
+                for(var j = 0; j<=11; j++){
+                    if(j-i==5){
+                        document.write((i*2)%10);
+                    }
+                    else if(i+j==5){
+                        document.write((i*2)-1);
+                    }
+                    else {
                         document.write("^");
                     }
                 }
+                 if(i==0){
+                    for(var j = 1 ; j <= 10; j++){
+                        document.write(j);
+                    }
+                }
                 document.write("<br/>")
-            } */
+            }
         </script>
-        <br/><br/>
     </body>
 </html>

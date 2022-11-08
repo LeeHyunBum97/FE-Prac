@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-enquiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>사용자 정의 객체</title>
+
+    </head>
+    <body>
+        <script>
+            let obj = {"name":"adam", "title":"세상에 없는 사람", "album":"genesis",
+                        "disp":function(){
+                            return this.name + ":" + this.title + ":" + this.album
+                        }}
+
+            // name속성 출력
+            console.log(obj.name);
+            console.log(obj["name"]);
+            console.log(obj.disp());
+            console.log(obj.disp); // 코드 자체를 출력함
+
+            // obj의 모든 속성을 순서대로 attr에 문자열 형태로 대입
+            for(attr in obj){
+                console.log(obj[attr]);
+                /* console.log(obj["attr"]);
+                console.log(obj.attr); */
+            }
+
+            // 객체 내부에 해당되는 속성이 있는가?
+            console.log("name" in obj);
+
+            // with 블럭 내에서 obj를 생략해도 된다.
+            // 현재 파일 내에서 window를 생략해도 window의 객체 요소를 불러오는 것도 이문법 때문
+            with(obj){
+                console.log(title)
+            }
+        </script>
+    </body>
+</html>
