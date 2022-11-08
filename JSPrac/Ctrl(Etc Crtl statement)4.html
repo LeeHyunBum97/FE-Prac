@@ -63,6 +63,11 @@
 
         <script>
             for (var i = 0; i<=6; i++){
+                if(i==5){
+                    for(var j = 1 ; j <= 10; j++){
+                        document.write(j%10 + "&nbsp");
+                    }
+                }
                 for(var j = 0; j<=11; j++){
                     if(j-i==5){
                         document.write((i*2)%10);
@@ -75,14 +80,11 @@
                     } */
                     else {
                         document.write("^");
+                        //document.write("&nbsp&nbsp");
                     }
                 }
                 document.write("<br/>")
-                 if(i==5){
-                    for(var j = 1 ; j <= 10; j++){
-                        document.write(j%10);
-                    }
-                }
+                 
             }
         </script>
     </body>
