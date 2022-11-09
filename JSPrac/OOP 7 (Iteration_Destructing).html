@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-enquiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Iterator_Destructring</title>
+        <!-- 구조분해 할당 -->
+    </head>
+    <body>
+        <script>
+            // 배열은 순차적으로 대입이 가능하기 때문에 (Symbol.iterator)
+            // 배열은 Iterator을 준수하기 때문에 순서대로 대입된 것.
+            var ar1 = [100, 200, 300, 400, 500];
+            let [one, two, three, four] = ar1; // -> 순서가 중요
+            console.log(one);
+
+            ar1 = [500, 400, 300, 200, 100];
+            [one, two, three, four] = ar1; // -> 배열은 저장된 순서가 중요
+            console.log(one);
+
+            // Iterator가 없기 때문에 순차적으로 대입되는 것이 아닌 이름을 보고 대입이된다.
+            var obj1 = {"name" : "카리나", "job" : "가수"};
+            let {job, name} = obj1 // -> 속성 이름 대로 대입
+            console.log(name);
+
+            let display1 = (msg, n) => {
+                for(let i=0; i<n; i++){
+                    console.log(msg);
+                }
+            }
+            display1(name);
+
+            
+            //display1(3, "메시지"); // 문자열은 숫자로 인식 되지 않기 때문에 불가하다.
+            let display2 = (ob) => { // 해당 함수를 호출하는 곳에서 여러개의 매개변수를 줄 때 좌와 같은식으로 묵어두는 겨이 필요
+
+                let {msg, n} = ob;
+                for(let i=0; i<n; i++){
+                    console.log(msg);
+                }
+            }
+            display2({n : 3, msg : "안녕하세여"})
+        </script>
+    </body>
+</html>
