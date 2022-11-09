@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-enquiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inherit</title>
+
+    </head>
+    <body>
+        <script>
+            class star{
+                constructor(name=""){
+                    this.name = name;
+                }
+                attack(){
+                    console.log("공격");
+
+                }
+            }
+            
+            class Protoss extends star {
+                constructor(name="", demage = 2){
+                    // 상위 클래스의 생성자 호출
+                    super(name);
+                    this.demage = demage;
+                }
+                
+                // 상위 클래스의 메서드를 다시 정의 하는 것 - method overriding
+                attack(){
+                    super.attack();
+                    console.log("프로토스의 공격");
+                }
+            }
+
+            const p = new Protoss();
+            p.attack();
+        </script>
+    </body>
+</html>

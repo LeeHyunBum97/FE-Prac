@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-enquiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>constructor2</title>
+
+    </head>
+    <body>
+        <script>
+            const Person = class{
+                // 생성자
+                constructor(num=1, name="", tel="2222"){ // 클래스 속성이 갖게 될 기본 값.
+                    // this.속성이름 -> 해당 클래스의 인스턴스들은 속성을 인스턴스.속성이름 으로 접근 불가
+                    // 하는 것이 맞으나, 왜 됨?
+
+                    console.log(Person.disp()); //인스턴스의 메서드 안에서는 static메서드 사용가능
+
+                    this.num = num;
+                    this.name = name;
+                    this.tel = tel;
+                }
+
+                // 접근자 메서드
+                setNum(num){
+                    this.num = num;
+                }
+                getNum(){
+                    return this.num;
+                }
+
+                // 접근자 메서드 getter, setter앞에 get, set을 붙이면 메서드를 속성처럼 접근할 수 있다.
+                set setName(name){
+                    this.name = name;
+                }
+                get getName(){
+                    return this.name;
+                }
+
+                // 클래스가 호출하는 메서드로 숨겨진 매개변수 this가 없음
+                // prototype에 추가하는 것이 아닌 클래스에 추가 인스턴스는 prototype에 추가된 것만 호출 가능
+                static disp(){
+
+                    //console.log(person.getName());는 불가능하다, 스태틱내부에서 인스턴스 메서드 사용 X
+
+                    // 이 메서드 안에서 this를 사용하면 이 this는 인스턴스의 참조가 아니고 class 객체의 참조가 된다.
+                    return "Static"
+                    //return this.tel; // undefined
+                }
+            }
+
+
+            // 인스턴스 생성
+            const person1 = new Person(); // 생성자에 있는 기본 값으로 만들어지게 된다.
+            const person2 = new Person(2, "파이터", "0101");
+            const person3 = new Person(3, "나이트", "1212");
+
+            // 인스턴스 확인
+            console.log(person1);
+            console.log(person1.tel); 
+            // -> this를 이용해서 생성했으므로 인스턴스.속성 으로 직접 호출이 불가능할 줄 알았는데 되넹.
+
+            person1.setNum(102);
+            console.log(person1.getNum());
+
+            console.log(person2);
+            console.log(person2.getNum());
+            person1.setNum(4455);
+            console.log(person2.getNum());
+
+            console.log(person3);
+
+            person3.setName = "왜 안됑";
+            console.log(person3.getName);
+
+        </script>
+    </body>
+</html>
