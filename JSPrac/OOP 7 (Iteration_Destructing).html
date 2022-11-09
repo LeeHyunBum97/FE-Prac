@@ -33,14 +33,39 @@
 
             
             //display1(3, "메시지"); // 문자열은 숫자로 인식 되지 않기 때문에 불가하다.
-            let display2 = (ob) => { // 해당 함수를 호출하는 곳에서 여러개의 매개변수를 줄 때 좌와 같은식으로 묵어두는 겨이 필요
-
-                let {msg, n} = ob;
+            let display2 = (ob) => { // 해당 함수를 호출하는 곳에서 여러개의 매개변수를 줄 때 좌와 같은식으로 묵어두는 것이 필요하다.
+                                     // 위 display1(3, "메시지")와 다르게 다음과 같이 하나의 객체로 묶어 쓰면 속성타입에 상관없이 적용가능
+                                                     let {msg, n} = ob;
                 for(let i=0; i<n; i++){
                     console.log(msg);
                 }
             }
-            display2({n : 3, msg : "안녕하세여"})
+            display2({n : 3, msg : "안녕하세여"});
+
+            let [a, b, c, d, e] = ar2;
+            console.log(e); // ar2배열에는 실제로 다섯번째 요소가 없기 때문에 undefined가 된다.
+
+            let [v, w, x, y, z = 500] = ar2; // 하지만 구조분해 할당도 이처럼 비어있는 요소에 기본값을 설정할 수 있다.
+            console.log(e);
+
+            // Spread연산_할당할 변수앞에 ...붙이기 -> OBJ ARY 적용 예시
+            ar2 = [100, 200, 300, 400];
+            var ins = {"name1":"카리나", "job1":"가수", "company":"SM", "Group":"aespa"};
+            let [first, ...etc] = ar2;
+            console.log(first);
+            console.log(etc);
+
+            let {name1, job1, ...attr} = ins;
+            console.log(attr);
+
+            // 함수의 Parameter에 Spread연산이 적용되면, REST Param이라고 한다.
+            function rest({name1, job1, ...attr}){
+                console.log(attr);
+            }
+            rest(ins);
+
+            
+
         </script>
     </body>
 </html>
