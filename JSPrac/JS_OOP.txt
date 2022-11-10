@@ -692,3 +692,65 @@ User <--> clinet(FE)  -------> (Request) -----> Server(BE){ connect Server(연�
       -> location에는 이러한 정보를 확인 할 수 있는 속성을 제공한다.
 
       reload() : window 새로고침, 이때 href 속성에 다른 URL을 삽입했다면 해당 URL로 이동 현재는 지양.
+    
+    - nevigator객체 : 웹 브라우저의 고유정보를 제공하는 객체
+    
+      - userAgent : client의 브라우저와 운영체제 정보를 반환한다.
+                    이 정보를 이용해 접속한 운영체제를 파악해서 그에 맞는 컨텐츠를 제공한다.
+                    Apple은 iphone, ipad, ipod의 운영체제 이름이 다르다.
+                    android는 구분이 없다.
+    
+    - history 객체 : 이전에 접속한 URL에 대한 정보를 가진 객체.
+    
+      back이나 forward 같은 메서드를 이용해 이전이나 이후로 이동하는 것이 가능하다.
+      
+      go(index)를 이용해서 이동하는 것도 가능하다.
+
+11. DOM(Document Object Model) : HTML body에 표시되는 태그들을 JS에 가져와서 사용하도록 만든 것.
+
+  - document 객체
+    document는 HTML 내의 body에 관련된 정보를 제공하고 작업을 수행할 수 있도록 해주는 객체
+    document.body는 실제 body 태그를 가리킨다.
+    
+    굉장히 많은 property가 있지만 중요한 것은 아래와 같다.
+
+      referrer : 이곳에 다른 곳에서 link를 선택해서 온 경우 다른 곳의 URL을 가리킨다(해당 링크에 어떻게 왔냐?)
+                Naver, FaceBook과 같은 곳에 광고를 올릴때, 어느 경로로 왔는가 판단할 때 사용한다 -> 그 곳에서 광고를 할 것인가 아닌가.
+      
+      cookie : 쿠키에 정보를 저장할 수 있도록 하는 속성
+
+        cookie가 보안이 약해서 사용하지 않는다? -> 잘 모르는 이야기(Ex> Oracle이 cookie를 수집하는데?)
+
+        HTTP나 HTTPS 통신은 상태를 유지하지 않는다고 한다, -> 한 번 요청을 하고 응답을 받으면 연결이 끊어진다.
+
+        client Browser에 저장해두고 client가 server에게 요청을 할 때 마다 보내는 기술이 cookie.
+        무엇을 저장하냐? -> refferrer why? -> 단순히 광고의 사이트-사이트간의 이동이 아니라 해당 페이지 내부에서
+        미리보기-상품정보-결제-추천 등에서 어떤 메뉴를 가고 어디서 이탈 했고를 파악하는 것인데 이는 UI를 개선하거나 문제를 해결하려는 행위
+
+        이를 Server에 저장해두고 Server에서 사용하는 기술은 Sesseion이라고 하며, Cookie의 대체제로 LocalStorage가 있긴 한데, 외국은 
+        아직 Cookie를 많이 사용한다.
+
+        최근에는 Sever와 Client Application을 구분해서 사용하는 경우가 많은데 이렇게 되면 session은 사용할 수 없게 되고,
+        Cookie 대신에 HTML5 API에서 제공하는 local.storage 사용을 권장한다.
+
+        왜 서버단과 클라이언트 단에 쿠기/세션으로 나누는가 이는 클라이언트단의 보안이 취약한 편이기 때문인데 쿠키뿐만 아니라 그냥 클라이언트 
+        단의 모든것을 난독화 하거나 암호화 하는 것을 권장하고 id/pw와 같은 민감정보는 세션에 저장하는 것이 바람직하다.
+
+        - 메서드
+          write(문자열)
+          writeln(문자열)
+          body에 문자열을 출력 - 태그가 적용됨
+
+    - DOM 객체 찾아오기
+
+      getElementById(아이디): id에 해당하는 객체를 찾아와서 1개만을 반환한다.
+      getElementByName(이름): 이름에 해당되는 것을 배열로 반환한다.
+      getElementByTagName(태그): 이름에 해당되는 것을 배열로 반환한다.
+      getElementByClassName(클래스): 클래스에 해당되는 것을 배열로 반환한다.
+
+    - DOM 객체의 공통 속성과 메서드
+      appendChild(), removeChild(), createElement(), createTextNode(), getAttribute(), setAttribute()
+
+      document.getElementById("아이디").setAttribute("src", 값);
+      document.getElementById("아이디").src = 값;
+

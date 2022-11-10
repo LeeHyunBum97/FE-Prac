@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+</head>
+<div id = "display"></div>
+<body>
+    <script>
+        var asepa = ["카리나", "닝닝", "지젤", "윈타"];
+        let idx = 0;
+
+        setInterval(()=>{
+            document.getElementById("display").innerHTML =
+                aspa[idx % aespa.length];
+        }, 3000);
+
+        alert(navigator.userAgent); // 현재 user의 browser와 os의 정보를 출력한다.
+
+        // 아이폰에서 접속한 것을 확인
+        var os = ["iphone"];
+        for(temp of os){
+            // os data에 있는 문자열이 userAgent에 포함되어있는지 여부를 확인
+            // 해당 코드는 대부분 Server단에 작성한다, Client에 하지 않는다.
+            // 대소문자 걱정을 없애는 이유는 os명이 대소문자가 섞여있기 때문
+            if(navigator.userAgent.toLowerCase().indexOf(temp) >= 0 ){ 
+                
+                // 배열에 포함된 운영체제에서 접속했을 때 수행할 작업을 작성한다.
+                break;
+            }
+        }
+    </script>
+</body>
+</html>
