@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+    <script>
+        // 배열생성
+        var ar1 = ["HTML", "CSS", "JS", "React.js"];
+        var ar2 = ["MriaDB", "JAVA", "Spring"];
+
+        // 배열 합치기
+        // 나중에 볼 수 있는 Map Reduce Programming에서 각각의 데이터로 처리한 이후에 결과를 합치는 것을 볼 수 있다.
+        // 데이터를 가져와서 합치고 처리하는 것은 지양
+        var subjectArray = ar1.concat(ar2);
+        console.log(`배열 두개 합친 배열 : ${subjectArray}`);
+
+        for(subject in subjectArray){ // 배열의 요소들을 순서대로 순회(접근)하는 법
+            console.log(subject);
+        }
+         
+        // 처음에 데이터를 추가하고 처음에 삽입한 데이터를 제거하는 것 
+        // Queue 개념에서 사용되는 것 -> FIFO를 구현 -> queue는 스케줄러에 자주 사용 (unshift/shift)
+        subjectArray.unshift("node"); // 배열의 맨앞에 node 추가
+        console.log(subjectArray);
+
+        // 마지막에 데이터를 추가하고 마지막에 삽입한 데이터를 제거
+        // Stack 개념에서 사용되는 것 -> LIFO를 구현 -> 복귀 주소 저장에 이용 (push/pop)
+        subjectArray.push("Spring Boot");
+        console.log(subjectArray);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
