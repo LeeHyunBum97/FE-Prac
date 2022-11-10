@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Parsing</title>'
+    <script>
+        // 이 데이터는 실제로 서버에서 받아오는 것에 해당되는데 일단 임의로 설정
+        var JsonParsingSample = '{"name":"adam", "job":"singer", "age":26}';
+
+        // 파싱
+        var result = JSON.parse(JsonParsingSample);
+
+        // 콘솔 출력
+        console.log(result.name);
+        console.log(result.age);
+        console.log(result.job);
+
+        JsonParsingSample = "[40, 50, 20, 40]";
+        result = JSON.parse(JsonParsingSample);
+
+        // 배열 순회 출력1
+        for(temp of result){
+            console.log(temp);
+        }
+
+        // 배열 순회 출력2 - 지향
+        result.forEach(element => {
+            console.log(element);
+        });
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Array 객체에 추가된 method</title>
+        <script>
+            var ar1 = [
+                10,
+                30,
+                23,
+                11,
+                23,
+                99
+            ];
+
+            // forEach()를 이용한 배열의 모든 요소를 반환하기 forEach() : 배열을 순회하면서 함수를 호출 함수의 매개변수 자리에 배열의
+            // 데이터를 순서대로 대입해서 함수를 호출한다.
+            ar1.forEach((e) => {
+                // 즉 1회에 10 넣고 콘솔 30 넣고 콘솔 .....로 진행 이런식으로 하면 내부 반복자를 사용하기 때문에 실행 속도가 빨라진다.
+                console.log(e);
+            });
+
+            // 배열의 모든 요소에 함수를 호출해 그 결과를 모아서 배열로 반환하다.
+            var ar1PlusFive = ar1.map((e) => {
+                return e + 5;
+            });
+            console.log(ar1PlusFive);
+
+            // filter는 조건에 맞는 데이터만 추출하는 함수 매개변수가 1개이고 Boolean을 반환하는 함수를 설정 검색할 때 검색자가 하나씩
+            // 입력될 때 바로 키워드를 찾아주는 기능을 구현할 때 주로 사용된다.
+            var ar1FilterOdd = ar1.filter((e) => {
+                return e % 2 == 1;
+            });
+            console.log(ar1FilterOdd);
+
+            // filter로 부분 검색 기능을 구현할 때 사용하는 원리, 대소문자 구분을 없앨 수 도 있다.
+            var serchSample = [
+                "Java",
+                "HTML",
+                "CSS",
+                "Node",
+                "react.js",
+                "REact.js"
+            ];
+            var searchResult = serchSample.filter((e) => {
+                return e.indexOf("ea") >= 0
+            });
+            console.log(searchResult);
+
+            searchResult = serchSample.filter((e) => {
+                return e
+                    .toLowerCase()
+                    .indexOf("ea") >= 0
+            });
+            console.log(searchResult);
+        </script>
+    </head>
+    <body></body>
+</html>
