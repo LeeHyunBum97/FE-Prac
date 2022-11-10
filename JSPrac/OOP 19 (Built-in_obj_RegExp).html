@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegExp-정규표현식</title>
+    <script>
+        var str1 = "JavaScript Reg Exp";
+        var str2 = "JavaSCript Reg Exp";
+        // 위 문자열에 script 단어가 포함되어 있는지 확인
+
+        var regExp1 =  /script/; // -> RegExp를 통해 regExp라는 인스턴스를 만들어서 RegExp가 제공하는 메서드를 접근
+        var regExp2 =  /script/i
+        console.log(regExp1.test(str1));
+        console.log(regExp2.test(str2));
+
+        // 주민등록번호 검사
+        // 숫자 6개, 숫자 7개
+        var jumin1 = "123456-1234567";
+        var jumin2 = "123456-123456";
+        var jumin3 = "123456-a567899";
+
+        // 패턴 생성
+        var jumin = /\d{6}-\d{7}/;
+        console.log(jumin.test(jumin1));
+        console.log(jumin.test(jumin2));
+        console.log(jumin.test(jumin3));
+
+        // 이메일 정규식 -> 구글
+        var email1 = "asdc123@awef.awefaw"
+        var email2 = "sdfweawfe.wef"
+        var emailValid = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+
+        console.log(emailValid.test(email1));
+        console.log(emailValid.test(email2));
+
+        // 입력 데이터의 유효성 검사는 문자열과 정규표현식을 이용한다
+
+        // 텍스트마이닝 할 때 정규표현식에 해당되는 데이터를 다른 데이터로 치환하는 경우가 있다.
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
