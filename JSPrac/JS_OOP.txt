@@ -314,8 +314,25 @@ P.S. JS에서는 리터럴/상수/함수/클래스 등의 객체들이 정적 He
    
    - 생성 : 큰 따옴표나 작은 따옴표 안에 문자열 리터럴을 대입해서 생성할 수 있고 new String(문자열)을 이용해서 생성하는 것이 가능하다.
 
-   - lenght 속성 : 문자열 길이 반환
-   - charAt(인덱스) : 인덱스 번째 문자를 반환
+  
+   - 주요 속성 : lenght _ 문자열 길이 반환
+   
+   - 메서드
+     charAt(인덱스) : 인덱스 번째 문자를 반환.
+     
+     indexOf(문자) : 해당되는 문자를 앞부터 검색 가진 인덱스들을 반환.
+                     lastIndexOf() -> 뒤에 부터 검색해서 인덱스 반환, 둘 다 못찾으면 -1반환.
+     
+     trim() : 문자열의 좌우 공백을 제거.
+     
+     charCodeAt(인덱스) : 해당 문자열의 코드 반환.
+     
+     toUpperCase() : 대문자로 변환(toLowerCase는 반대)
+     
+     split("기준이될 문자열") : 기준이될 문자열 좌/우로 나눠 배열로 만든다.
+     
+     substring(index...) : 매개 변수가 1개이면 해당 문자열 이후 전부잘라서 반환
+                           매개 변수가 2개면 앞은 시작위치, 뒤의 것은 끝위치이거나 개수가 될 수도 있다.
    
    - 문자열 관련 작업중 중요한 것
      문자열의 좌우 공백 제거 문제를 해결하는 것.
@@ -331,3 +348,42 @@ P.S. JS에서는 리터럴/상수/함수/클래스 등의 객체들이 정적 He
 var str = "CGCCGDKSKDGCCGCCGDKDGCCGDS"
 와 같은 문자열에서 GCCG를 찾아서 첫글자의 위치를 전부 출력하시오
 한번 GCCG를 구성한 알파벳은 다시 사용하면 안된다.
+
+***String 을 잘 해야하는 이유***
+
+User <--> clinet(FE)  -------> (Request) -----> Server(BE){ connect Server(연결만) <---> Application Server(일) <---> Data Server(저장) }
+                      <------- (Response) <----
+
+-> Req/Res 사이에 통신으로 Trafic발생(비용)
+
+-> DataServer은 File/Data Server로 나뉜다.
+
+-> DataServer은 RDBMS/NoSQL/분산파일 로 다시 나뉜다.
+
+-> Server단 전체는 WebServer/SoketServer로 나뉘는데 Soket 서버가 비교적 성능이 좋고 Web서버가 사용하기에는 편리하다.
+
+-> Client단은 Browser/Application으로 나뉘며 브라우저 서버는 웹서버를 주로 이용하고, 애플리케이션은 웹/소켓 서버 둘다 주로 이용.
+
+-> 하지만 Application 또한 Browser 안에 담을 수 있도록 하는 추세이다.
+
+-> client에서 Req/Res 의 Validation check(검사)를 진행하는 것이 Trafic을 감소시키는 방법, 물론 Connect 서버와 Application 서버 사이에도 진행
+
+-> 그렇다면 Client단에서 무엇을 검사하나? -> 입력하는 것이 문자/파일 밖에 없다.
+
+-> 파일은 존재여부, 크기, 종류 등을 확인/검사 하면 비교적 간단하게 해결가능
+
+-> 문자는 String으로 문자열의 패턴 등을 검사하고, RegExp(정규식)으로 검사한다. <Connect/Application Server 사이도 마찬가지.>
+
+-> 이때, String 으로 제어할 수 있는 것이 굉장히 많고, RegExp도 String을 조금 더 편하게 쓰는 것(String이 RegExp대체 가능).
+
+-> Server에서는 String Stream / Buffer 을 언어에 따라 지원하지 않을 수 있다.
+
+-> charAt(), indexOf()만 사용해서 하는 것을 추천하는 이유.
+
+-> 오늘 RegExp를 하면 id/pw 등이 가진 특이 속성에 대해 참/거짓 판단하는 거 연습 ---> ex> 특수기호, 숫자, 대소문자 등의 패턴
+
+-> 또한 위의 전 과정을 클라우드에 올려 배포하는 것이 중요하다.
+
+-> 여기 까지가 Dev이고 이후 운영과 CI/CD를 합치면 DevOps라고 생각하면 된다.
+
+<연습문제> 13자리 문자열을 만들고 뒤의 6자리는 별로 보여주기
