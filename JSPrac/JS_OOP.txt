@@ -613,4 +613,32 @@ User <--> clinet(FE)  -------> (Request) -----> Server(BE){ connect Server(연�
     - 함수
       add, has, keys, valuss, delete, clear 등
 
-    - 
+    - for을 이용해서 순회할 수 있다, 자바스크립트에서 저장한 순서대로 접근.
+      다른언어에서는 저장한 순서를 기억하지 못한다.
+
+  - Map : key와 value를 쌍으로 저장하는데 Key는 Set으로 만들어진다. -> key는 중복되면 안되니까
+          동일한 key에 value를 여러 번 저장하면 마지막 value만 설정된다.
+
+    - 생성
+      new Map()
+      new Map([key, value], [key, value], ....)
+
+    - 함수
+      
+      set(key, value): 데이터 추가
+      
+      get(key): key에 해당되는 데이터 가져오기 -> 존재하지 않는 key를 대입했을 때 결과를 확인하는 연습할 필요가 있다.
+
+      keys(): key를 순회할 수 있는 이터레이터 반환.
+
+      values(): value를 순회할 수 있는 이터레이션 반환.
+
+      entries(): 모든 데이터를 순회할 수 있는 이터레이터 반환.
+
+      delete(key): key에 해당하는 데이터를 삭제한다.
+
+      clear(): 모든 데이터를 삭제한다.
+
+      has(key): key의 존재여부를 반환한다.
+
+** String, RegExp, Array, JSON, Map은 내장 객체 중 다른 클래스들 보다 중요하다.**
