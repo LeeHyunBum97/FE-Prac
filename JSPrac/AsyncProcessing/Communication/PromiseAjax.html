@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PromiseAjax</title>
+    </head>
+    <body>
+        <div id="result"></div>
+
+        <script>
+            // DOM찾아오기
+            const result = document.getElementById("result");
+
+            // JS객체를  받아서 문자열로 변환한 후 result에 출력하는 함수
+            const render = (content) => {
+                // JS 객체를 JSON 문자열로 변환 -> POST 방식에서 parm을 만들 때 사용.
+                result.innerHTML = JSON.stringify(content);
+            }
+
+            // 전송방식, url, parmeter를 받아서 요청 하는 함수
+            const promiseAjax = (method, url, payload) => {
+
+                // resolve는 성공했을 때 호출될 함수 - then()에 해당 reject는 실패했을 때 호출될 함수 - catch()에 해당
+                return new Promise((resolve, reject) => {
+                    const request = new XMLHttpRequest();
+                    request.open(method, url);
+                    request.setRequestHeader('Content-type', 'application/json');
+
+                    // 파라미터를 전송할 때는 JS객체를 문자열로 바꿔서 보내야한다.
+                    request.send(JSON.stringify(payload));
+                    request.addEventListener("load", () => {
+                        resolve(request.response);
+                    });
+                    request.addEventListener("load", () => {
+                        reject(new Error(request.status));
+                    });
+
+                })
+            }
+            // 실제 요청
+            promiseAjax("GET", "https://jsonplaceholder.typicode.com/posts")
+                .then(
+                    JSON.parse
+                )
+                .then(render, console.error);
+        </script>
+    </body>
+</html>
