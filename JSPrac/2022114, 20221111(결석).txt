@@ -153,3 +153,4 @@ JS에서
 
 
 7. 연습 https://jsonplaceholder.typicode.com/posts에서 데이터읽어 와서 원하는 값만 출력하기
+

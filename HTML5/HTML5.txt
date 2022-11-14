@@ -1,0 +1,96 @@
+1. HTML5
+   => XHTML4에서 진화한 마크업 언어
+   => 디자인과 내용의 분리 -> 특별한 경우가 아니면 디자인은 CSS를 이용
+   => JAVA Applet, Active X, 플래시 와 같은 외부 플러그인을 최소화 - 자바의 플렉스나 .Net의 실버라이트 배제 (Ex> 게임 할 때 보안키)
+   => 문서 구조의 의미나 문서 안에 삽입된 데이터의 의미 등을 명확하기 위한 사양이 추가 - Sementic적인 요소
+   => 마크업 언어에 웹 애플리케이션을 만들 수 있는 API(JS를 이용해 제작)를 포함
+
+2. 태그의 변화
+   
+   [추가된 태그]
+   1) section, article, aside, header, hgroup, footer, nav => 문서 구조를 Sementic하게 하기 위해 추가된 태그
+   2) figure, audio, video, canvas, source => 외부 컨텐츠 사용(멀티미디어)
+   3) keygen, output, progress, meter => 폼 관련 태그
+   4) mark, ruby, time, command, details, datalist => 텍스트 관련 태그
+
+   [의미가 변경된 태그]
+   1) hr, menum small, strong
+
+   [태그에 추가된 속성]
+   1) input -> 모바일을 위한 속성, 유효성 검사 관련 속성이 추가됨. 
+
+   [없어진 요소] _ 표준에서는 없어졌다고 하나 기존의 사용하고 있는 곳들 때문에 브라우저 자체에서 삭제된 것은 아니다. - 의미의 변화도 마찬가지
+   1) bgsound -> 싸이월드 배경음악 같은 요소 설정 audio가 대체
+   2) applet 
+
+   [**API의 변화**]
+   1) 로컬 저장소 -> 이전에는 cookie만 사용
+      => ** web Storage **
+      => web SQL
+      => Indexed DB
+
+   2) Drag And Drop API
+
+   3) GeoLocation : 위치 정보
+
+   3) Canvas : 그리기 API _ 그래프나 이미지 출력을 외부라이브러리 없이 구현할 수 있게 되었음
+
+   5) Web Worker :Thread 사용 가능.
+
+   6) Math ML : 수식을 표현할 수 있지만, FireFox에서만 사용가능
+
+   7) Communication API 
+      => ajax Lv2로 변화(현재까지 사용한 것.)
+      => Server Sent Events(Web Push)
+      => ** Web Socket API **
+
+4. 권장사항
+   => Cookie보다는 LocalStaorage를 이용하는 것을 권장한다.
+      쿠키는 서버에 요청할 때 마다 전송되고 문자열만 저장 가능
+      LocalStorage는 JS객체를 저장할 수 있고 필요할 때 마다 서버에게 전송가능.
+      [Server 입장에서는 Cookie(무조건적으로 서버로 보낸다.)를 수집하는 것이 유리하다.]
+
+   => Cache보다는 Local DB를 사용하는 것을 권장.
+
+   => JS 애니메이션 대신 CSS의 전환 효과를 이용하라.
+
+   => 부담을 많이 주는 작업은 웹 워커 사용을 권장. - JS를 이용해서 플러그인 이나 PC에서 직접 동작하는 애플리케이션을 개발하는 경우.
+
+5. 기본적인 문서구조 
+
+1) DOCTYPE - DTD : <!DOCTYPE html>
+
+2) 인코딩 설정 : <meta charset = "인코딩 방식">
+
+3) 문서 검증 : HTML5 규격에 맞는지 검증한다, http://html5.validator.nu -> 물론 대형 사이트들도 모두 지키지는 못한다.
+
+6. HTML5를 지원하지 않는 브라우저를 위한 코딩_지금은 거의 없음
+   => 적용범위 확인 : https://caniuse.com/#Indexed
+
+7. Mark up
+
+1) 추가된 섹션 요소 : header, section, article, aside, navm footer
+                     => 실제로는 div와 같은 역할을 하지만 Sementic한 요소를 강화하기 위해서 사용한다.
+
+2) figure, figcaption
+   => 이미지나 그래프 또는 예제 코드등을 작성할 때, 문서안에 삽입해 의미를 전할하기 위함,.
+   <figure>
+        <image src = "이미지 파일경로/>
+        <figcaption> 그림에 대한 설명</figcaption>
+   </figure>
+   => 이미지 아래 그림에 대한 설명이 추가된다.
+   => 음성지원 브라우저에서는 그림에 대한 정보를 읽어준다.(Sementic)
+
+3) ruby
+   => 글자 위에 조그마한 글자를 표시하는 기능
+      한자를 사용할 때 위의 독음을 표시하는 용도가 많아서 사용.
+
+8. 멀티미디어 
+1) video 
+   => 비디오 재생을 위한 태그
+   => JS 객체로 추가됨
+   <video id="video"></video>
+
+   document.getElementById("video") ->  외부 플러그인 없이 DOM에 접근해 동영상을 제어할 수 있음
+                                        브라우저 별로 코덱이 다르기 때문에 모든 영상을 전부 재생되는 것은 아니다.
+                                        동일한 동영상을 여러 포맷으로 만들어 제공하는 것이 좋다.
