@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <script>
+        // 캔버스 DOM찾아오기
+        let canvas = document.getElementById("canvas");
+        canvas.get
+        // 캔버스에 그릴 수 있는 정보
+        let context = canvas.getContext("2d");
+
+        // 글자 그림 모두 그릴 수 있다.
+        context.fillRect(0, 0, 159, 100);
+        context.fillText("안녕하세요 반갑습니다", 0, 110);
+    </script>
+</body>
+</html>
