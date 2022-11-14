@@ -8,15 +8,49 @@
     </head>
     <body>
         <!-- 모바일 환경에서 접속해서 확인 -> 같은 와이파이 안에서 IP주소와 접속 경로 명 -->
-        <input type="text"/>
-        <input type="number"/>
+        <input type="text"/><br/>
+        <input type="number"/><br/>
         <!-- Pc환경에서 input의 변화가 없지만 모바일에서 자동으로 해당 input에 입력할 타자기를 종류별로 구분하게 된다.-->
-        <input type="number"/>
-        <input type="date"/>
-        <input type="search"/>
+        <input type="number"/><br/>
+        <input type="date"/><br/>
+        <input type="search"/><br/>
         <br/>
         <br/>
         
+        <progress id = "progress" value="0" max ="100"></progress> 
+        
+
+        <input id="btn" type="button" value="시작"/>
+        <script>
+            let progress = document.getElementById("progress");
+            let btn = document.getElementById("btn");
+
+            // button을 누르면 progress를 1초마다 10씩 증가 시키도록
+            /* timer 객체 자체의 값은 실제로 쓰이지 않지만 실제로는 10씩 계속 증가되고 있다. -> 메모리 누수 */
+            btn.addEventListener("click", (e) =>{
+                // 1초 마다 수행할 작업
+                let timer = setInterval(()=>{
+                    progress.value += 10;
+
+                    if(progress.value == 100){
+                        clearInterval(timer); // timer는 progress DOM 객체의 value값이 100이 되면 종료되어야 메모리 누수가 발생하지 않는다
+
+                    }
+                }, 1000);
+            });
+        </script>
+        <br/><br/>
+
+        <form action = "server">
+            <input type = "text" required="required" maxlength="10"> <!-- 빈 문자열은 안넘어가지만, 공백문자 입력시 넘어가게 됨 -->
+            <br/>
+            <input type = "number" min = "0", max="20">
+            <br/>
+            <!-- 0에서 9까지 숫자 16개만 입력/시작 가능하고 16자리 숫자로 끝나야함. -->
+            <input type = "text" required="required" pattern="^[0-9]{16}$"> 
+            <br/>
+            <input type="submit" value="전송"/>
+        </form>
 
     </body>
 </html>
