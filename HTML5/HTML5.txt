@@ -143,3 +143,47 @@
          => 각 픽셀의 값을 제어하는 것이 가능하다
             원형 UI 클릭을 만들고자 하는 경우 배경이 투명인 상태로 원을 그리고 마우스로 클리했을 때 그 영역의 색상 값을 추출해서 알파값이 0이면
             동작하지 않고 알파값이 0이 아니면 동작하도록 만들면 원 UI를 만들 수 있다.
+
+      4) SVG(Scalable Vector Grapics)
+         => XML을 이용해서 Vector 그래픽을 표시하느 API - 웹표준
+         => Canvas는 Pixel 단위로 그림을 그리지만 SVG는 벡터 이미지
+      
+      5) Canvas와 SVG의 비교
+
+         Canvas [이미지 처리 방식 : Bitmap(Pixel단위) | DOM이존재(JS로 제어가능) | 높은 해상도 이미지 사용시 성능 저하 | 애니메이션 지원X 
+                | 외부 이미지로 저장 가능 | 게임에 적합]
+         
+         SVG [이미지 처리 방식 : 벡터 그래픽(선이나 도형 단위) | DOM이 존재하지 않음 | 이미지가 복잡해지면 Mark Up이 복잡해진다. | 애니메이션 가능 
+             | 외부로 저장 불가 | 세밀한 해상도를 지원하는 UI에 적합(Graph)]
+
+         => 실제 그래프에 사용하는 경우는 직접 작성하는 것도 가능하지만 d3js나 jqplot 같은 JS라이브러리를 사용하는 경우가 많다.
+            jqplot이나 d3js 로 접속해서 예제를 가져올 수 있다.
+
+9. FORM
+
+   1) 기능변화
+      => 여러가지 타입이 추가
+      => 유효성 검사 기능이 추가
+      => 진행 상황을 표시해주는 progress와 meter가 추가 되었음
+
+   2) input의 type 추가 -> 대부분 모바일 위한 속성
+      => 기존 input type : text, password, checkout, radio, file, button, image, submit, reset, hidden
+      => 추가된 input type : search, tel, url, email, number, range, color, data, month, week, time, datetime-local
+      
+      => 네트워크 맞추었을 때 스마트 폰에서 접속하는 방법 
+         (Live Server에 띄우는 것과 html 파일을 더블클릭하는 것의 차이는 전자는 실제로 내부 디렉토리의 파일과 가지고 있는 자원을 
+          실제 서버에 올리지만 후자는 단순히 파일의 내용을 출력하는 것으로 후자는 와이파이를 맞춰도 접속불가 BUT 전자는 와이파이만
+          맞추면 접속해서 TEST가능. -> input옵션중 모바일을 위한 속성값을 확인해 볼 수 있다.)
+
+      다른 PC에서 접속하는 것을 허용하려면 방화벽을 해제해야 한다.
+      
+       P.S. Port Forwarding -> iptime 포트 포워딩 -> 사설 ip를 공용 ip로 만들어서 외부에서 PC에 서버처럼 접속 시키게 할 수 있다.
+
+      => jquery를 사용했는지 <JQuery 홈페이지에서 옵션 확인가능>
+         HTML5는 브라우저 별로 지원 범위가 달랐기에 추가된 기능을 사용하게 되면 브라우저 별로 설정을 다르게 해야 동일한 컨텐츠를 사용할 
+         수 있다. --> jquery가 해당 부분(cross browsing)을 쉽게 해주는 JS라이브러리다.
+         즉 , JQuery를 사용하면 브라우저에 구애받지 않고 손 쉬운 UI구성이 가능하다.
+         그러나 국내에서는 IE의 비중이 많이 낮아지고 IE대신 나온 Edge는 html5를 지원하기 대문에 guswosms jQuery사용을 잘 하지 않는 추세,
+         jQuery의 단점중 하나가 렌더링 속도가느림
+
+         
