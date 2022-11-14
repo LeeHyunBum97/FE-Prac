@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API</title>
+    <script>
+        let request = new XMLHttpRequest();
+        request.open("GET", "./resource/data.json")
+        request.send('');
+        request.addEventListener("load", () =>{
+            let result = JSON.parse(request.responseText);
+            alert(result.count);
+        });
+        request.addEventListener("error", ()=>{
+            alert(e.message);
+        })
+
+        // Ajax와 fetch api 비교
+
+        fetch('./resource/data.json') // XML은 파싱하지 못함.
+        .then((res) => res.json())
+        .then((data) => alert(data.document))
+        .catch((e) => alert(e.message));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
