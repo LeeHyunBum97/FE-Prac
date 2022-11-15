@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File API - image preview</title>
+</head>
+<body>
+    <!-- 이미지 파일만 선택할 수 있는 file 객체 -->
+    <!-- multiple속성이 없으므로 파일은 하나만 선택할 수 있다. -->
+    <input type = "file" accept="image/*" id = "imginput" />
+
+    <!-- 이미지 미리보기 영역 만들기 -->
+    <img id="display" width="250" height="250">
+
+    <script>
+        // HTML 관련 Script에서는 항상 사용할 DOM객체를 먼저 가져오는 것이 좋다.
+        let imginput = document.getElementById("imginput");
+        let display = document.getElementById("display");
+
+        // imginput의 선택이 변경되면
+        imginput.addEventListener("change", (e)=>{
+            // 선택한 파일의 내용읽기
+            let reader = new FileReader();
+
+            // 파일이 선택되었는지 확인
+            // JS는 0이 아닌 숫자나 null이나 undefind가 아니면 true로 간주 - truty
+            if(!(imginput.files && imginput.files[0])){
+                alert("선택된 파일이 없음.");
+                display.src = null;
+                return ;
+            }
+
+            reader.readAsDataURL(imginput.files[0]); // 비동기적으로 수행된다. 콜백을 걸야한다.
+
+            // 파일의 내용을 다읽으면
+            reader.addEventListener("load", () => {
+                // 읽은 내용을 display에 띄우기
+                display.src = reader.result;
+            })
+        });
+
+    </script>
+</body>
+</html>
