@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Worker</title>
+</head>
+<body>
+    <h1>WebWorker</h1>
+    숫자입력<input type = "number" id = inputNum>
+    <button id = "startBtn">합계구하기</button>
+
+    <script>
+        let inputNum = document.getElementById("inputNum");
+        let startBtn = document.getElementById("startBtn");
+
+        let worker;
+        startBtn.addEventListener("click", () => {
+            if(worker){
+                worker.terminate();
+            }
+            worker = new Worker("HTML5 8 (WebWorker).js");
+            worker.postMessage(Number(inputNum.value));
+            worker.onmessage  = (e) => {
+                // Worker가 전송한 데이터 출력
+                alert(`합계는 ${e.data} 입니다.`);
+            }
+        })
+
+    </script>
+
+    <!-- 아래는 웹 워커를 사용하지 않은 경우로 너무 많은 연산이나 작업이 있을 시 UI가 얼어버릴 수 있다. -->
+    <!-- <script>
+
+        let inputNum = document.getElementById("inputNum");
+        let startBtn = document.getElementById("startBtn");
+
+        
+        startBtn.addEventListener("click", () => {
+            let result = 0;
+            for(let i = 0; i <= Number(inputNum.value); i++){
+                result += i;
+            }
+            alert(`합은 ${result} 입니다`);
+        });
+        
+    </script> -->
+</body>
+</html>

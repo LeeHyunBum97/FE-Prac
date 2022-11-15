@@ -391,3 +391,33 @@ WebClient(브라우저 혹은 애플리케이션) <--> Web Server <--> Applicait
 
    워커를 사용하는 실제 예시로 JS로 AI를 학습시키는 동안에 Worker로 간단한 다른 작업을 수행하는 정도.
    참고로 파이썬으로 할 수 있는 AI는 JS로 대부분 가능하다.
+
+   => 워커는 JS파일로 생성하고 이후 html파일에서 호출된다. -> UI를 얼리지 않기 때문에 대부분의 일을 Worker에 하는 것이 좋다.
+
+14. Application Cache
+   => 리소스의 일부분을 로컬에 저장하기 위한 기능 
+   => 오프라인 브라우징이 가능해지고 리소스를 빠르게 로드할 수 있고 서버 부하를 감소시킬 수 있습니다.
+      CSS나 JS그리고 이미지 파일 등을 캐싱
+   => Menifest
+      명시적으로 캐시된 항목 -> 직접삭제사히지 않는 이상 명시된 데이터 들은 캐싱된다(다시받을 필요X)
+      sample.html/sampling.js 에서 전자에 접근할 수 없을 때 후자의 내용이 중요
+
+15. Web Push --> 무엇인지 보는 정도로만 
+   => Server sent Events : 클라이언트의 요청없이 서버가 클라이언트에게 메시지리를 전송하는것은
+   => 알림설정에 주로 사용한다.
+   => Apple Server가 보내는 Push를 (Apple Notification serveice) APNS라 하고 GoogleS Server가 보내는 PUSH를 FCM
+      (firebase cloud message)라고 합니다.
+   => Ex> 재난 경보
+
+ 16. Web Socket
+   => Web 에서의 TCP 통신을 위한 API
+   => 일반적인 Web 요청의 처리 방식은 Client가 Server에게 접속한 후 하낭의 request를 전송하고 그 req를 Server가 받으면 처리를 하고 res를 
+      Client에 전송하고 접속이 끊긴다.
+   => 연속되는 작업을 처리하기 위해서 Cookie(Client의 브라우저에 저장) 와 Session(서버에 저장)이라는 개념을 도입
+   => 일반적인 Web요청(HTTP, HTTPS)은 본문 이외의 헤더 정보를 같이 전송해야 한다.
+      --> 작은 사이즈의 데이터를 보내는 경우 오버헤드가 너무 크다.  
+      --> Web Socket을 이용하면 헤더가 거의 없기 때문에 이러한 오버헤드를 줄일 수 있다.
+   
+   => 작은 양의 메시지를 자주주고 받는 경우는 ajax나 Fetch API 보다는 Web Socket을 사용하는 것을 권장한다.
+      (Ex> 채팅 중에서도 챗봇을 만드는 경우 Web Socket을 고려해보아야 한다. ---- 병원, 쇼핑몰)
+      
