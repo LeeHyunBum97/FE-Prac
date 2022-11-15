@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage</title>
+</head>
+<body>
+    <form method="POST" action = "login" id = "loginForm">
+        아이디<input id = "idInput" type = "text" ><br/>
+        비밀번호<input id ="pwInput" type = "password"><br/>
+        <input type = "checkbox" id = "idSave">아이디 저장<br/>
+        <input id="" type ="submit" value="로그인">
+    </form>
+
+    <script>
+        let loginForm = document.getElementById("loginForm");
+        let idInput = document.getElementById("idInput");
+        let pwInput = document.getElementById("pwInput");
+        let idSave = document.getElementById("idSave");
+
+        // form에 데이터를 전송할 때, submit
+        loginForm.addEventListener("submit", ()=>{
+            // 체크 여부를 먼저 확인한다.
+            if(idSave.checked === true){
+                localStorage.user_id = idInput.value;
+            } else {
+                delete localStorage.user_id;
+            }
+        });
+
+        // 메모리 로드가 끝났을 때, isSave가 저장되어 있으면 가져오기
+        window.addEventListener("load", ()=>{
+            if(typeof localStorage.user_id != "undefined"){
+                // 로컬스토리지에 idSave가 있으면 저장
+                idInput.value = localStorage.user_id;
+                idSave = idSave.checked;
+            }
+        });
+    </script>
+</body>
+</html>
