@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Session Storage</title>
+    </head>
+    <body>
+        <!-- 2개의 문자열 입력받는 도구와 버튼 3개 -->
+        Key<input id="keyInput" type="text"/>
+        Value<input id="valueInput" type="text"/>
+
+        <input id="insertBtn" type="button" value="삽입"/>
+        <button id="removeBtn">삭제</button>
+        <button id="addWindowBtn">윈도우 추가</button>
+
+        <!-- 데이터 출력영역 -->
+        <fieldset>
+            <legend>데이터 출력 영역</legend>
+            <select id="list" size="10"></select>
+        </fieldset>
+
+        <script>
+            // 입력부
+            let keyInput = document.getElementById("keyInput");
+            let valueInput = document.getElementById("valueInput");
+            let insertBtn = document.getElementById("insertBtn");
+            let removeBtn = document.getElementById("removeBtn");
+            let addWindowBtn = document.getElementById("addWindowBtn");
+
+            // 출력부
+            let list = document.getElementById("list");
+
+            // 세션스토리지 내용을 읽어서 list에 출력하기 처음 접속할 때 그리고 삽입이나 삭제할 때 매번 데이터를 다시 출력할 생각이라서 코드를
+            // 여러번 작성하지 않도록 하기위해서
+
+            const showData = () => {
+                // list 초기화
+                list.innerHTML = "";
+
+                //세션 스토리지를 순회하면서 하나씩 읽어오기
+                for (let i = 0; i < sessionStorage.length; i++) {
+                    let temp = sessionStorage.key(i);
+
+                    // select에 옵션을 추가 앞의 내용이 보여지는 내용이고 뒤의 것이 이름
+                    list.options[list.options.length] = new Option(
+                        temp + " : " + sessionStorage[temp],
+                        temp
+                    )
+                }
+            }
+
+            // 윈도우가 모든 데이터를 로드한 후에 작업하도록
+            window.addEventListener("load", () => {
+
+                // 제일 처음 Live Server를 이용해서 실행했기 때문에 Live Server의 세션이 남아있다.
+                showData();
+            });
+
+            insertBtn.addEventListener("click", () => {
+                // Storage에 저장
+                sessionStorage[keyInput.value] = valueInput.value;
+
+                // 데이터를 다시 출력
+                showData();
+            })
+
+            // list를 클릭했을 때 클릭한 데이터를 input에 출력
+            list.addEventListener("click", () => {
+                // 선택한 데이터 찾아오기
+                let selectedData = list.options[list.selectedIndex];
+                keyInput.value = selectedvalue;
+                valueInput.value = sessionStorage[selectedData.value]
+            })
+
+            // list를 클릭했을 때 선택된 epdlxj tkrwp
+            removeBtn.addEventListener("click", () => {
+                delete sessionStorage[keyInput.value];
+                showData();
+            });
+
+            // 윈도우 추가 버튼을 눌렀을 때 새창으로 열기
+            addWindowBtn.addEventListener("click", () => {
+                window.open(location.href)
+            });
+        </script>
+    </body>
+</html>
