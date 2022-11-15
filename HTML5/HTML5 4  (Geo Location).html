@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoLocation</title>
+</head>
+<body>
+    <!-- 위치 정보 한번만 받기 -->
+    <!-- <script>
+        navigator.geolocation.getCurrentPosition((sucsess)=>{
+            // 위도, 경도 출력
+            alert(sucsess.coords.latitude + " : " + sucsess.coords.longitude);
+        }, (fail)=>{
+            alert(error.code);
+        });
+    </script> -->
+
+    <!-- 위치정보 계속 받아오기 -->
+    <script>
+        navigator.geolocation.watchPosition((sucsess)=>{
+            // 위도, 경도 출력
+            alert(sucsess.coords.latitude + " : " + sucsess.coords.longitude);
+            console.log(sucsess.coords.latitude + ",  " + sucsess.coords.longitude);
+        }, (fail)=>{
+            alert(error.code);
+        },{
+            // 5초 마다가 위치정보를 가져온다
+            maximumAge : 5000,
+
+            // GPS, Router, 기지국 중 정확도 높은 데이터를 가져온다.
+            enableHighAccuracy : true
+        });
+    </script>
+</body>
+</html>
